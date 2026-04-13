@@ -1,0 +1,19 @@
+name: DeFi Smart Contracts CI
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+      - name: Run Tests
+        run: forge test --gas-report
+
+  slither:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run Slither Analysis
+        uses: crytic/slither-action@v0.3.0
